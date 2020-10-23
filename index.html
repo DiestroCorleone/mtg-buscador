@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" href = "https://diestrocorleone.github.io/quark-css/quark.css">
+	<link rel = "stylesheet" href = "https://fonts.googleapis.com/css?family=Oswald">
+	<link rel = "stylesheet" href = "https://fonts.googleapis.com/css?family=Lato">
+	<script src = "control.js"></script>
+	<title>Buscador Pokémon | Inicio</title>
+	<style>
+		.font-Oswald{
+			font-family: Oswald;
+		}
+		
+		.font-Lato{
+			font-family: Lato;
+		}		
+		
+		h1{
+			font-size: 4rem;
+		}
+		
+		header img{
+			width: 40%;
+			height: auto;
+		}
+		
+		ul img{
+			width: 30%;
+			height: auto;
+		}
+		
+		ul img:hover{
+			transform: scale(2);
+		}
+		
+		.bg-lite-grey{
+			background-color: rgb(200, 200, 200);
+		}
+		
+		ul{
+			list-style-type: none;
+		}
+	</style>
+</head>
+<body>
+	<header class = "text-c padded bg-lite-grey">
+		<img src = "poke-logo.png">
+		<h1 class = "font-blue font-Oswald">BUSCADOR DE POKÉMON</h1>
+		<input type = "text" class = "input bordered border-blue font-lato padded" placeholder = "Ej: Charizard" id = "pokemonABuscar"><br><br>
+		<button class = "btn-red padded bordered border-blue font-white font-Oswald" onclick = "search()">Buscar</button>
+	</header>
+	<div class = "row col-full padded">
+		<div class = "col-full">
+			<ul id = "pokeList" class = "font-Lato text-c"></ul>
+			<p class = "font-Oswald text-c"><strong>Hacé hover</strong> sobre el Pokémon para agrandarlo.</p>
+		</div>
+	</div>
+	<footer class = "bg-red padded text-c font-white font-Lato">
+		<p>Coded by Diestro Corleone using the <a href = "https://pokeapi.co/" target = "_blank">PokéAPI</a>.<br><a href = "mailto:matias.perez.mcd@gmail.com">Mandame un e-mail!</a></p>
+	</footer>
+</body>
+</html>
