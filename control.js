@@ -1,26 +1,41 @@
 function search(){
-	var pokemonABuscar = document.getElementById("pokemonABuscar").value.toLowerCase();
-	var pokeList = document.getElementById("pokeList");
-	var name, sprite, id;
+	var cartaABuscar = document.getElementById("cartaABuscar").value.toLowerCase();
+	var cardList = document.getElementById("cardList");
+	var name, card, id;
 	
-	if(pokemonABuscar == null || pokemonABuscar == ""){
-		alert("Ingresá el nombre de un Pokémon!");
+	if(cartaABuscar == null || cartaABuscar == ""){
+		alert("Ingresá el nombre de una carta!");
 	}else{
-		fetch('https://­pokeapi.co/api/v2/pokemon/' + pokemonABuscar)
+		fetch('https://api.magicthegathering.io/v1/cards?name=' + cartaABuscar)
 			.then(response => response.json())
-			.catch(err => alert("No se encontraron Pokémon!"))
+			.catch(err => alert("No se encontraron cartas!"))
 			.then(data => {
 				console.log(data)
-				pokeList.innerHTML = null;
-				name = data.name;
-				sprite = data.sprites.front_default;
-				id = data.id;
+				cardList.innerHTML = null;
+				for(var i = 0; i < data.cards.length; i++){
+				name = data.cards[i].name;
+				if(data.cards[i].imageUrl == undefined){
+					card = "back.jpg";
+				}else{
+					card = data.cards[i].imageUrl;
+				}
 				var list = document.createElement("li");
 				list.className = "bg-lite-grey padded margin";
-				list.innerHTML = "<strong>" + name.charAt(0).toUpperCase() + name.slice(1) + "</strong>" + "<br><br>" + "<img src = '" + sprite + "'>" + "<br><br><p><strong>Número: </strong>" + id + "</p>";		
-				pokeList.appendChild(list);
-				document.getElementById("pokemonABuscar").value = "";
+				list.innerHTML = "<strong>" + name + "</strong><br><br><img src = '" + card + "'>";
+				cardList.appendChild(list);
+				}
+				document.getElementById("cartaABuscar").value = "";
 				})	
 	}
-	pokemonABuscar = null;
+	cartaABuscar = null;
+}
+
+window.onload = function(){
+	var cartaABuscar = document.getElementById("cartaABuscar");
+	cartaABuscar.addEventListener("keyup", function(event) {
+		if(event.keyCode === 13) {
+			event.preventDefault();
+			document.getElementById("search").click();
+		}
+	});
 }
