@@ -12,6 +12,10 @@ function search(){
 			.then(data => {
 				console.log(data)
 				cardList.innerHTML = null;
+				if(data.cards.length == 0){
+					alert("No se encontraron cartas!");
+					return false;
+				}
 				for(var i = 0; i < data.cards.length; i++){
 				name = data.cards[i].name;
 				if(data.cards[i].imageUrl == undefined){
@@ -25,7 +29,8 @@ function search(){
 				cardList.appendChild(list);
 				}
 				document.getElementById("cartaABuscar").value = "";
-				})	
+				})
+			document.getElementById("footer").classList.remove("row", "col-full", "fixed-down");
 	}
 	cartaABuscar = null;
 }
